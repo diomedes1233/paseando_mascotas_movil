@@ -243,7 +243,6 @@ class _RegistrarPageState extends State<RegistrarPage> {
                 //maxLength: 8,
                 decoration: const InputDecoration(
                     labelText: "Confirmar Password",
-                    fillColor: Colors.white,
                     filled: true,
                     border: OutlineInputBorder(),
                     suffixIcon: Icon(
