@@ -18,7 +18,6 @@ class _PaseadoresPageState extends State<PaseadoresPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     getPaseadores();
   }
@@ -66,84 +65,87 @@ class _PaseadoresPageState extends State<PaseadoresPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("Paseadores"),
-        ),
-        drawer: MenuPage(),
-        body: Stack(
-          children: [
-            Row(children: [
-              Expanded(
-                  child: Container(
-                padding: EdgeInsets.only(top: 20, left: 50, right: 0),
-                child: TextFormField(
-                  controller: buscar,
-                  keyboardType: TextInputType.name,
-                  decoration: const InputDecoration(
-                    labelText: "Ciudad",
-                    border: OutlineInputBorder(),
-                  ),
+      appBar: AppBar(
+        title: const Text("Paseadores"),
+      ),
+      drawer: MenuPage(),
+      body: Stack(
+        children: [
+          Row(children: [
+            Expanded(
+                child: Container(
+              padding: EdgeInsets.only(top: 20, left: 50, right: 0),
+              child: TextFormField(
+                controller: buscar,
+                keyboardType: TextInputType.name,
+                decoration: const InputDecoration(
+                  labelText: "Ciudad",
+                  border: OutlineInputBorder(),
                 ),
-              )),
-              IconButton(
-                  onPressed: () {
-                    setState(() {
-                      getCiudad();
-                    });
-                  },
-                  padding: EdgeInsets.only(right: 50, left: 10),
-                  icon: const Icon(Icons.search, size: 50, color: Colors.white))
-            ]),
-            const SizedBox(
-              height: 30,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 100),
-              child: Container(
-                child: ListView.builder(
-                    padding: EdgeInsets.all(30),
-                    itemCount: paseadores.length,
-                    itemBuilder: (BuildContext context, i) {
-                      return Row(
-                        children: [
-                          Padding(
-                              padding: EdgeInsets.all(10),
-                              child: CircleAvatar(
-                                backgroundImage: NetworkImage(
-                                  paseadores[i]['foto'],
-                                ),
-                                radius: 60,
-                              )),
-                          Expanded(
-                            child: ListTile(
-                              title: Text(paseadores[i]["nombre"],
-                                  style: const TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.black,
-                                  )),
-                              subtitle: Text(paseadores[i]["ciudad"]),
-                              onTap: () {
-                                datosPaseador paseadorNew = datosPaseador(
-                                    idDoc[i],
-                                    paseadores[i]["nombre"],
-                                    paseadores[i]["ciudad"],
-                                    paseadores[i]["contacto"],
-                                    paseadores[i]["foto"],
-                                    paseadores[i]["perfil"]);
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            DetallePaseador(paseadorNew)));
-                              },
-                            ),
-                          ),
-                        ],
-                      );
-                    }),
               ),
+            )),
+            IconButton(
+                onPressed: () {
+                  setState(() {
+                    getCiudad();
+                  });
+                },
+                padding: EdgeInsets.only(right: 50, left: 10),
+                icon: const Icon(Icons.search, size: 50, color: Colors.white))
+          ]),
+          const SizedBox(
+            height: 30,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 100),
+            child: Container(
+              child: ListView.builder(
+                  padding: EdgeInsets.all(30),
+                  itemCount: paseadores.length,
+                  itemBuilder: (BuildContext context, i) {
+                    return Row(
+                      children: [
+                        Padding(
+                            padding: EdgeInsets.all(10),
+                            child: CircleAvatar(
+                              backgroundImage: NetworkImage(
+                                paseadores[i]['foto'],
+                              ),
+                              radius: 50,
+                            )),
+                        Expanded(
+                          child: ListTile(
+                            title: Text(paseadores[i]["nombre"],
+                                style: const TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.black,
+                                )),
+                            subtitle: Text(paseadores[i]["ciudad"]),
+                            onTap: () {
+                              datosPaseador paseadorNew = datosPaseador(
+                                  idDoc[i],
+                                  paseadores[i]["nombre"],
+                                  paseadores[i]["ciudad"],
+                                  paseadores[i]["contacto"],
+                                  paseadores[i]["foto"],
+                                  paseadores[i]["perfil"],
+                                  paseadores[i]["ubicacion"]);
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          DetallePaseador(paseadorNew)));
+                            },
+                          ),
+                        ),
+                      ],
+                    );
+                  }),
             ),
-          ],
-        ));
+          ),
+        ],
+      ),
+      bottomNavigationBar: const menuInferior(),
+    );
   }
 }

@@ -3,6 +3,7 @@ import 'package:paseando_mascotas/modelo/mascota_modelo.dart';
 import 'package:paseando_mascotas/pages/home_page.dart';
 import 'package:paseando_mascotas/pages/menu_page.dart';
 import 'package:paseando_mascotas/repositorio/mascota_repositorio.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'login_page.dart';
 
 class RegistrarMascotaPage extends StatefulWidget {
@@ -15,6 +16,12 @@ class RegistrarMascotaPage extends StatefulWidget {
 enum Sexo { Hembra, Macho }
 
 class _RegistrarMascotaPageState extends State<RegistrarMascotaPage> {
+  @override
+  void setState(VoidCallback fn) {
+    // TODO: implement setState
+    super.setState(fn);
+  }
+
   final nombre = TextEditingController();
   final tipo = TextEditingController();
   final color = TextEditingController();
@@ -38,7 +45,7 @@ class _RegistrarMascotaPageState extends State<RegistrarMascotaPage> {
   void traerDatos() {
     setState(() {
       String foto =
-          "https://firebasestorage.googleapis.com/v0/b/paseando-mascotas.appspot.com/o/img_mascotas%2Fmascotas-perros.jpg?alt=media&token=e1e8564d-b2d1-4f1a-b19c-e9eadcf2642b";
+          "https://firebasestorage.googleapis.com/v0/b/udea-mascotas.appspot.com/o/img_mascotas%2Fmascota.jpg?alt=media&token=80b37f97-4b17-4e0f-8efa-dc722cd20e49";
       if (nombre.text.isNotEmpty &&
           tipo.text.isNotEmpty &&
           color.text.isNotEmpty &&
@@ -61,7 +68,6 @@ class _RegistrarMascotaPageState extends State<RegistrarMascotaPage> {
       appBar: AppBar(
         title: const Text("Registrar Mascota"),
       ),
-      drawer: MenuPage(),
       body: Padding(
           padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 50),
           child: SingleChildScrollView(

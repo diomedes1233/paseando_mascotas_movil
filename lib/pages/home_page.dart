@@ -13,14 +13,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List mascotas = [];
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     getMascotas();
   }
+
+  List mascotas = [];
 
   Future getMascotas() async {
     String? uid = FirebaseAuth.instance.currentUser?.uid;
@@ -46,11 +46,11 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("PeseandoPet"),
+        title: const Text("Mis Mascotas"),
         actions: [
           IconButton(
               onPressed: () {
-                Navigator.push(context,
+                Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (context) => PaseadoresPage()));
               },
               icon: const Icon(Icons.accessibility_rounded,
@@ -75,12 +75,11 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add, size: 30, color: Colors.white),
         onPressed: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const RegistrarMascotaPage()));
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => RegistrarMascotaPage()));
         },
       ),
+      bottomNavigationBar: const menuInferior(),
     );
   }
 }
