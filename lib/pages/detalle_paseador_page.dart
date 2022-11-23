@@ -90,7 +90,7 @@ class _DetallePaseadorState extends State<DetallePaseador> {
                     MaterialPageRoute(
                         builder: (context) => MapaPage(widget.paseador)));
               },
-              icon: const Icon(Icons.map, size: 30, color: Colors.red)),
+              icon: const Icon(Icons.place, size: 30, color: Colors.red)),
           IconButton(
               padding: const EdgeInsets.only(right: 30),
               onPressed: () {
@@ -98,7 +98,7 @@ class _DetallePaseadorState extends State<DetallePaseador> {
               },
               icon: Icon(
                   favorito
-                      ? FontAwesomeIcons.heartCircleBolt
+                      ? FontAwesomeIcons.heartCircleCheck
                       : FontAwesomeIcons.heart,
                   size: 30,
                   color: Colors.red))
